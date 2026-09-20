@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Guia de patrimoni: mapa interactiu dels punts d'interès del poble.">
+    <meta name="theme-color" content="#2a1f0e">
+
+    <!-- El JS omple el <title> amb `${POBLE} — ${titol-app traduït}` -->
+    <title>Guia de Punts d'Interès</title>
+
+    <!-- Favicon inline (emoji de castell) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏰</text></svg>">
+
+    <link rel="stylesheet" href="estils.css">
+</head>
+<body>
+
+    <!-- ============================================================
+         MENÚ LATERAL
+         Drawer en mòbil · columna fixa en tauleta/escriptori
+         aria-hidden gestionat per JS (obrirMenu / tancarMenu)
+         ============================================================ -->
+    <nav id="menu-lateral"
+         aria-label="Menú principal"
+         aria-hidden="true">
+
+        <!-- Capçalera del drawer -->
+        <!-- .titol-menu s'omple des de JS amb la constant POBLE (funcions.js) -->
+        <div id="capçalera-menu">
+            <span class="titol-menu"></span>
+            <button id="boto-tancar-menu"
+                    aria-label="Tancar menú">✕</button>
+        </div>
+
+        <!-- Navegació de seccions -->
+        <ul role="list">
+            <li>
+                <button data-seccio="introduccio"
+                        aria-controls="seccio-contingut"
+                        aria-expanded="false">
+                    Introducció
+                </button>
+            </li>
+            <li>
+                <button data-seccio="mapa"
+                        aria-controls="seccio-mapa"
+                        aria-current="true">
+                    Mapa
+                </button>
+            </li>
+            <li>
+                <button data-seccio="historia"
+                        aria-controls="seccio-contingut"
+                        aria-expanded="false">
+                    Història
+                </button>
+            </li>
+            <li>
+                <button data-seccio="festes-tradicions"
+                        aria-controls="seccio-contingut"
+                        aria-expanded="false">
+                    Festes i tradicions
+                </button>
+            </li>
+            <li>
+                <button data-seccio="informacio-practica"
+                        aria-controls="seccio-contingut"
+                        aria-expanded="false">
+                    Informació pràctica
+                </button>
+            </li>
+        </ul>
+
+        <!-- Peu del drawer -->
+        <!-- #peu-menu s'omple des de JS amb "${POBLE} · ${titol-app traduït}" -->
+        <p id="peu-menu"></p>
+
+    </nav><!-- /menu-lateral -->
+
+
+    <!-- Coberta fosca darrere el menú quan és obert en mòbil -->
+    <div id="coberta-menu"
+         aria-hidden="true"
+         role="presentation"></div>
+
+
+    <!-- ============================================================
+         CONTINGUT PRINCIPAL
+         ============================================================ -->
+    <main id="contingut-principal">
+
+        <!-- Capçalera sticky -->
+        <header id="capçalera-principal">
+
+            <button id="boto-menu"
+                    aria-label="Obrir menú"
+                    aria-controls="menu-lateral"
+                    aria-expanded="false">☰</button>
+
+            <!-- El JS omple aquest text des de la constant POBLE -->
+            <h1 id="titol-poble"></h1>
+
+            <!--
+                Desplegable d'idioma personalitzat.
+                · Botó disparador (mostra el codi de l'idioma actiu, ex: "CA ▾").
+                · Llista <ul role="listbox"> amb els 4 idiomes; s'obre en clicar
+                  el botó o amb la tecla Enter/Espai/Fletxa avall.
+                L'estat el gestiona sincronitzarBotonsIdioma() a funcions.js.
+                Els textos de les opcions els tradueix actualitzarTextosDinamics().
+            -->
+            <div id="selector-idioma" class="desplegable-idioma">
+                <button type="button"
+                        id="selector-idioma-disparador"
+                        class="desplegable-idioma__disparador"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-controls="selector-idioma-llista"
+                        aria-label="Selecció d'idioma">
+                    <span class="desplegable-idioma__codi">CA</span>
+                    <span class="desplegable-idioma__fletxa" aria-hidden="true">▾</span>
+                </button>
+                <ul id="selector-idioma-llista"
+                    class="desplegable-idioma__llista"
+                    role="listbox"
+                    aria-label="Idiomes disponibles"
+                    hidden>
+                    <li role="option" data-idioma="ca" aria-selected="true"  tabindex="-1">Català</li>
+                    <li role="option" data-idioma="en" aria-selected="false" tabindex="-1">English</li>
+                    <li role="option" data-idioma="es" aria-selected="false" tabindex="-1">Castellano</li>
+                    <li role="option" data-idioma="fr" aria-selected="false" tabindex="-1">Français</li>
+                </ul>
+            </div>
+
+        </header><!-- /capçalera-principal -->
+
+
+        <!-- ========================================================
+             SECCIÓ MAPA PRINCIPAL
+             El SVG conté les zones hardcoded. JS els afegirà events i
+             podrà regenerar les zones des de zones.js si cal.
+             viewBox="0 0 100 88": x de 0 a 100, y de 0 a 88.
+
+             PLANTILLA: adapteu el viewBox a la proporció real de la
+             imatge, i substituïu els paths de sota per les coordenades
+             reals obtingudes amb eina-coordenades.html.
+             ======================================================== -->
+        <section id="seccio-mapa"
+                 aria-label="Mapa interactiu del poble">
+
+            <svg id="mapa-poble"
+                 viewBox="0 0 100 88"
+                 preserveAspectRatio="xMidYMid meet"
+                 role="img"
+                 aria-label="Mapa del poble amb quatre zones clicables"
+                 xmlns="http://www.w3.org/2000/svg">
+
+                <title>Mapa</title>
+                <desc>
+                    Mapa esquemàtic del poble amb quatre zones d'interès.
+                </desc>
+
+                <!-- ================================================
+                     FONS DEL MAPA
+                     ================================================
+                     PAS 1 · Posa el fitxer a: imatges/mapa-poble.jpg
+                     PAS 2 · Ajusta el viewBox de dalt a la proporció
+                             REAL de la teva imatge:
+                                 alçadaViewBox = 100 × (alçadaPx / ampladaPx)
+                     PAS 3 · Posa la mateixa alçada al `height` de sota.
+                     ================================================ -->
+                <image href="imatges/mapa-poble.jpg"
+                       x="0" y="0"
+                       width="100" height="88"
+                       preserveAspectRatio="xMidYMid slice"/>
+
+
+                <!-- ================================================
+                     ZONES CLICABLES (PLANTILLA)
+                     ================================================
+                     Els paths de sota són marcadors de posició. Cal
+                     substituir cada atribut "d" per les coordenades
+                     reals obtingudes amb eina-coordenades.html, i
+                     actualitzar també zones.js amb els mateixos
+                     valors al camp formaArea.
+                     ================================================ -->
+
+                <!-- Zona 1 -->
+                <g class="zona-clicable"
+                   data-id-zona="zona-catedral"
+                   tabindex="0"
+                   role="button"
+                   aria-label="Explorar Catedral">
+                    <path d="M51.7,48.5 L51.4,63.5 L72.8,64.2 L73.6,49 Z"/>
+                    <text x="88" y="60" class="etiqueta-zona">Catedral</text>
+                </g>
+
+                <!-- Zona 2 -->
+                <g class="zona-clicable"
+                   data-id-zona="zona-castell"
+                   tabindex="0"
+                   role="button"
+                   aria-label="Explorar Castell">
+                    <path d="M25.9,46.4 L27,66.5 L48.4,65.2 L47.7,47.6 Z"/>
+                    <text x="10" y="60" class="etiqueta-zona">Castell</text>
+                </g>
+
+                <!-- Zona 3 -->
+                <g class="zona-clicable"
+                   data-id-zona="zona-nord"
+                   tabindex="0"
+                   role="button"
+                   aria-label="Explorar Zona Nord">
+                    <path d="M31.4,4.7 L30.9,36 L79.7,34.8 L76.9,5.1 Z"/>
+                    <text x="20" y="15" class="etiqueta-zona">Nord</text>
+                </g>
+
+               
+
+            </svg><!-- /mapa-poble -->
+
+        </section><!-- /seccio-mapa -->
+
+
+        <!-- ========================================================
+             SECCIÓ CONTINGUT (seccions del menú)
+             Oculta per defecte. JS en gestiona la visibilitat
+             i en canvia el contingut via mostrarSeccio().
+             ======================================================== -->
+        <section id="seccio-contingut"
+                 aria-live="polite"
+                 aria-atomic="false"
+                 hidden>
+            <!-- El JS inserirà aquí el títol i el text de la secció -->
+        </section><!-- /seccio-contingut -->
+
+
+    </main><!-- /contingut-principal -->
+
+
+    <!-- ============================================================
+         AVÍS SENSE JAVASCRIPT
+         ============================================================ -->
+    <noscript>
+        <div style="padding:1.5rem;background:#f2ead8;border:2px solid #8b2e0a;
+                    font-family:Georgia,serif;color:#1e1408;text-align:center;
+                    position:fixed;top:0;left:0;right:0;z-index:9999;">
+            <p lang="ca">⚠️ Aquesta aplicació requereix JavaScript per funcionar.</p>
+            <p lang="es">⚠️ Esta aplicación requiere JavaScript para funcionar.</p>
+            <p lang="en">⚠️ This application requires JavaScript to work.</p>
+            <p lang="fr">⚠️ Cette application nécessite JavaScript pour fonctionner.</p>
+        </div>
+    </noscript>
+
+
+    <!-- ============================================================
+         SCRIPTS — ordre obligatori: traduccions → zones → punts → funcions
+         ============================================================ -->
+    <script src="dades/traduccions.js"></script>
+    <script src="dades/zones.js"></script>
+    <script src="dades/punts.js"></script>
+    <script src="funcions.js"></script>
+
+</body>
+</html>
