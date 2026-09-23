@@ -334,7 +334,7 @@ t contrari, amb ca l'Aguilar i cal Pere Solé Xarpell (edificada al 1934 al lloc
         coordenades: { x:  26  , y:  50 },
         imatge: 'imatges/punts-interes/pi-007.jpg',
         nom: {
-            ca: 'CA LES CATERINES	',
+            ca: 'CA LES 		',
             es: '[ES-TODO] Punto de ejemplo',
             en: '[EN-TODO] Example point',
             fr: '[FR-TODO] Point d\'exemple',
