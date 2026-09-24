@@ -291,7 +291,7 @@ t contrari, amb ca l'Aguilar i cal Pere Solé Xarpell (edificada al 1934 al lloc
         id: 'pi-006',
         idZona: 'zona-catedral',
         estrelles: 1,
-        coordenades: { x:  16  , y:  50 },
+        coordenades: { x:  26  , y:  48 },
         imatge: 'imatges/punts-interes/pi-006.jpg',
         nom: {
             ca: 'CA LA LLUCIANETA',
@@ -331,7 +331,7 @@ t contrari, amb ca l'Aguilar i cal Pere Solé Xarpell (edificada al 1934 al lloc
         id: 'pi-007',
         idZona: 'zona-catedral',
         estrelles: 1,
-        coordenades: { x:  26  , y:  50 },
+        coordenades: { x:  6  , y:  52 },
         imatge: 'imatges/punts-interes/pi-007.jpg',
         nom: {
             ca: 'CA LES 		',
@@ -367,7 +367,7 @@ t contrari, amb ca l'Aguilar i cal Pere Solé Xarpell (edificada al 1934 al lloc
         id: 'pi-008',
         idZona: 'zona-catedral',
         estrelles: 1,
-        coordenades: { x:  6  , y:  50 },
+        coordenades: { x:  34  , y:  40 },
         imatge: 'imatges/punts-interes/pi-008.jpg',
         nom: {
             ca: 'CAL GALTANEGRA	',
@@ -510,7 +510,7 @@ t contrari, amb ca l'Aguilar i cal Pere Solé Xarpell (edificada al 1934 al lloc
         id: 'pi-012',
         idZona: 'zona-catedral',
         estrelles: 2,
-        coordenades: { x:  38  , y:  40 },
+        coordenades: { x:  30  , y:  44 },
         imatge: 'imatges/punts-interes/pi-012.jpg',
         nom: {
             ca: 'CASA DELS ROVIRA',
@@ -718,7 +718,7 @@ t contrari, amb ca l'Aguilar i cal Pere Solé Xarpell (edificada al 1934 al lloc
         id: 'pi-014',
         idZona: 'zona-castell',
         estrelles: 1,
-        coordenades: { x:  78  , y:  14 },
+        coordenades: { x:  58  , y:  12 },
         imatge: 'imatges/punts-interes/pi-014.jpg',
         nom: {
             ca: 'CAL MOLINS',
@@ -782,7 +782,7 @@ t contrari, amb ca l'Aguilar i cal Pere Solé Xarpell (edificada al 1934 al lloc
         id: 'pi-016',
         idZona: 'zona-castell',
         estrelles: 1,
-        coordenades: { x:  82  , y:  18 },
+        coordenades: { x:  76  , y:  18 },
         imatge: 'imatges/punts-interes/pi-016.jpg',
         nom: {
             ca: 'CAMPANAR DISANTA O TORRE DE LES HORES',
@@ -860,7 +860,7 @@ t contrari, amb ca l'Aguilar i cal Pere Solé Xarpell (edificada al 1934 al lloc
         id: 'pi-018',
         idZona: 'zona-castell',
         estrelles: 2,
-        coordenades: { x:  80  , y:  12 },
+        coordenades: { x:  72  , y:  12 },
         imatge: 'imatges/punts-interes/pi-018.jpg',
         nom: {
             ca: 'FARMÀCIA PALLARÈS',
@@ -894,7 +894,7 @@ t contrari, amb ca l'Aguilar i cal Pere Solé Xarpell (edificada al 1934 al lloc
         id: 'pi-019',
         idZona: 'zona-castell',
         estrelles: 1,
-        coordenades: { x:  88  , y:  20 },
+        coordenades: { x:  68  , y:  16 },
         imatge: 'imatges/punts-interes/pi-019.jpg',
         nom: {
             ca: 'PORXOS CAL SANT ANTONI',
@@ -934,7 +934,7 @@ t contrari, amb ca l'Aguilar i cal Pere Solé Xarpell (edificada al 1934 al lloc
             fr: '[FR-TODO] Point d\'exemple',
         },
         estil: {
-            ca: 'Carrer del Castell, 1	 ',
+            ca: '		 ',
             es: '[ES-TODO]',
             en: '[EN-TODO]',
             fr: '[FR-TODO]',
@@ -1033,7 +1033,7 @@ t contrari, amb ca l'Aguilar i cal Pere Solé Xarpell (edificada al 1934 al lloc
         id: 'pi-025',
         idZona: 'zona-nord',
         estrelles: 1,
-        coordenades: { x:  70  , y:  38 },
+        coordenades: { x:  74  , y:  46 },
         imatge: 'imatges/punts-interes/pi-025.jpg',
         nom: {
             ca: 'CAL GILIBETS',
@@ -1108,7 +1108,7 @@ t contrari, amb ca l'Aguilar i cal Pere Solé Xarpell (edificada al 1934 al lloc
         id: 'pi-027',
         idZona: 'zona-nord',
         estrelles: 1,
-        coordenades: { x:  66  , y:  28 },
+        coordenades: { x:  74  , y:  36 },
         imatge: 'imatges/punts-interes/pi-027.jpg',
         nom: {
             ca: 'ELS DOMINICS - HOSPITAL DELS LLOBERA',
